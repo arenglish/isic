@@ -27,26 +27,27 @@ def plotAsymmetry(stats):
 
     plt.show()
 
-def getAsymmetryScore(stats):
-    fig, axes = plt.subplots(2, 2)
-    axes[0, 0].imshow(stats.sides[0].image, cmap=plt.cm.gray)
-    axes[0, 0].set_title('Side A')
-    axes[0, 0].axis('off')
-    axes[0, 1].imshow(stats.sides[1].image, cmap=plt.cm.gray)
-    axes[0, 1].set_title('Side B')
-    axes[0, 1].axis('off')
+def getAsymmetryScore(stats, doPlot = False):
+    if (doPlot):
+        fig, axes = plt.subplots(2, 2)
+        axes[0, 0].imshow(stats.sides[1].image, cmap=plt.cm.gray)
+        axes[0, 0].set_title('Side A')
+        axes[0, 0].axis('off')
+        axes[0, 1].imshow(stats.sides[0].image, cmap=plt.cm.gray)
+        axes[0, 1].set_title('Side B')
+        axes[0, 1].axis('off')
 
-    ## Fold Side A down across major axis
-    axes[1, 0].imshow(stats.overlapped.flippedLeft, cmap=plt.cm.gray)
-    axes[1, 0].set_title('Flipped Left Region')
-    axes[1, 0].axis('off')
+        ## Fold Side A down across major axis
+        axes[1, 0].imshow(stats.overlapped.flippedLeft, cmap=plt.cm.gray)
+        axes[1, 0].set_title('Side A Flipped')
+        axes[1, 0].axis('off')
 
-    ## Fold Side A down across major axis
-    axes[1, 1].imshow(stats.overlapped.image, cmap=plt.cm.gray)
-    axes[1, 1].set_title('Overlapped Region')
-    axes[1, 1].axis('off')
+        ## Fold Side A down across major axis
+        axes[1, 1].imshow(stats.overlapped.image, cmap=plt.cm.gray)
+        axes[1, 1].set_title('Non-overlapping Region')
+        axes[1, 1].axis('off')
 
-    print('Asymmetrical Area: ', stats.overlapped.area)
-    print('Total Area: ', stats.region.area)
+    #print('Asymmetrical Area: ', stats.overlapped.area)
+    #print('Total Area: ', stats.region.area)
     asymmetryScore = stats.overlapped.area / stats.region.area
     return asymmetryScore

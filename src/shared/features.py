@@ -1,8 +1,7 @@
 class LesionFeatures:
-  def __init__(self, asymmetry, color):
-    self.asymmetry = asymmetry
-    self.color = color
-    self.featureNamesList = ['Color', 'Asymmetry']
+  def __init__(self, asymmetryScore):
+    self.asymmetry = asymmetryScore
+    self.featureNamesList = ['Asymmetry']
 
   def featuresList(self):
-    return [self.color, self.asymmetry]
+    return [self.asymmetry]
