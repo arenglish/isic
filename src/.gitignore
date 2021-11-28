@@ -1,2 +1,5 @@
 dist/**
 images/**
+**/*.png
+**/*.bmp
+**/*.jpg

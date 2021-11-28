@@ -42,7 +42,7 @@ class OverlapLesionSides:
 
 class LesionMaskStats:
     def __init__(self, _image):
-        image = rescale(_image, 0.25)
+        image = rescale(_image, 0.1)
         self.region = LesionMaskStats.largestRegion(image)
         self.image = rotate(image, -1*self.region.orientation*180/math.pi)
         self.region = LesionMaskStats.largestRegion(self.image)
